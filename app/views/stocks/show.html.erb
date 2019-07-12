@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <%= stylesheet_link_tag"style.css" %>
+</head>
+<body>
+  <header></header>
+  <h1><%= @company_name %></h1><br>
+<ul>
+  <label><h3>Industry:</h3></label> <%= @industry %><br>
+  <label><h3>Sector:</h3></label> <%= @sector %><br>
+  <label><h3>Description:</h3></label> <%= @description %><br>
+  <label><h3>CEO:</h3></label> <%= @ceo %><br>
+  <label><h3>Website:</h3></label> <%= link_to @website %><br>
+  <label><h3>Price:</h3></label><%= @price %><br>
+  <label><h3>Beta:</h3></label><%= @beta %><br>
+  <label><h3>Average:</h3></label><%= @vol_avg %><br>
+  <label><h3>Market Cap:</h3></label><%= @mkt_cap %><br>
+  <label><h3>Last Dividend:</h3></label><%= @last_div %><br>
+  <label><h3>Range:</h3></label> <%= @range %><br>
+  <label><h3>Changes:</h3></label> <%= @changes %><br>
+  <label><h3>Percent Change:</h3></label> <%= @changes_percentage %><br>
+  <label><h3>Exchange:</h3></label> <%= @exchange %><br>
+</ul>
+
+<h1><label>Comments:</label></h1>
+
+ <% @stock.comments.each do |comment| %>
+  <h3><%= comment.title %></h3><br>
+  <label><%= comment.content %></label>
+ <% end %>
+
+ <h4>Add Stock to Portfolio? (<%= @stock.symbol %>)</h4>
+ <%= form_tag new_user_portfoliosstock_path(user_id: params[:id]), :method => :get, :class => 'form-seach' do %>
+  <div class="input-append">
+    <%= collection_select :portfoliosstock, :id, Stock.all, :id, :symbol %>
+    <button type="submit" class="btn">Add</button>
+  </div>
+<% end %>
+</body>
+</html>

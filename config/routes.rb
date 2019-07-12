@@ -2,20 +2,22 @@ Rails.application.routes.draw do
   resources :stocks
   resources :users
 
+  get 'login', to: 'auth#new'
+  post 'login', to: 'auth#verify'
+  delete '/login', to: 'auth#destroy', as: 'logout'
+
+
+
   resources :users do
     resources :comments
   end
 
   resources :users do
-    resources :portfolio
-  end
-
-  resources :users do
-    resources :watchlist
+    resources :portfoliosstocks
   end
 
   resources :stocks do
     resources :comments
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
 end

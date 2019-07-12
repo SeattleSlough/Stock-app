@@ -1,0 +1,8 @@
+<h1>All comments</h1>
+<ul>
+<% @comments.each do |comment| %>
+<%byebug%>
+<li><%= link_to comment.title, user_comment_path(comment.user) %></li>
+<%end%>
+
+</ul>
